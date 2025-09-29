@@ -30,18 +30,20 @@ export default function Maintenance() {
       : [];
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Maintenance</h1>
+    <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
+        Maintenance
+      </h1>
 
       {/* Organization Dropdown */}
-      <div className="mb-4">
+      <div className="mb-4 max-w-sm w-full">
         <label className="block mb-2 font-medium text-gray-700">
           Select Organization:
         </label>
         <select
           value={selectedOrg}
           onChange={(e) => setSelectedOrg(e.target.value)}
-          className="border border-gray-300 rounded-md px-4 py-2 w-full max-w-sm"
+          className="border border-gray-300 rounded-md px-4 py-2 w-full"
         >
           <option value="">-- Choose an Organization --</option>
           {orgs.map((org) => (
@@ -54,36 +56,37 @@ export default function Maintenance() {
 
       {/* Search Bar */}
       {selectedOrg && (
-        <div className="mb-4">
+        <div className="mb-4 max-w-md w-full">
           <input
             type="text"
             placeholder="Search vehicle..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 rounded-md px-4 py-2 w-full max-w-md"
+            className="border border-gray-300 rounded-md px-4 py-2 w-full"
           />
         </div>
       )}
 
       {/* Vehicle Listing */}
       {selectedOrg && (
-        <div>
-          <h2 className="text-xl font-semibold mb-2 text-gray-800">Vehicles:</h2>
+        <div className="overflow-x-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-2 text-gray-800">
+            Vehicles:
+          </h2>
           <ul className="space-y-2">
             {displayedVehicles.slice(0, 5).map((v, index) => (
               <li
                 key={index}
-                className="p-4 bg-white rounded shadow flex justify-between items-center"
+                className="p-4 bg-white rounded shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4"
               >
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
                   <span className="font-medium">{v.type}</span>
                   <span>{v.makeModel}</span>
                   <span className="font-mono">{v.regNo}</span>
                 </div>
-                {/* Link to Service page */}
                 <Link
-                  to={`/service/${v.regNo}`}
-                  className="px-4 py-2 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
+                  to={`/service/${encodeURIComponent(v.regNo)}`}
+                  className="px-4 py-2 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition mt-2 sm:mt-0"
                 >
                   Start Service
                 </Link>

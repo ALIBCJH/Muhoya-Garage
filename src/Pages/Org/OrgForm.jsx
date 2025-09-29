@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 export default function OrgForm() {
   const [orgName, setOrgName] = useState("");
+  const [address, setAddress] = useState("");
   const [vehicles, setVehicles] = useState([]);
   const [vehicleType, setVehicleType] = useState("");
   const [makeModel, setMakeModel] = useState("");
   const [regNo, setRegNo] = useState("");
 
-  // Add a vehicle to the list
   const addVehicle = () => {
     if (vehicleType && makeModel && regNo) {
       setVehicles([...vehicles, { vehicleType, makeModel, regNo }]);
@@ -17,22 +17,21 @@ export default function OrgForm() {
     }
   };
 
-  // Submit organization and its vehicles
   const handleSubmit = (e) => {
     e.preventDefault();
-    const orgData = { orgName,  vehicles };
+    const orgData = { orgName, address, vehicles };
     console.log("Submitting Org:", orgData);
     // TODO: send orgData to backend API
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Add Organization</h1>
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">Add Organization</h1>
 
-      {/* Organization Form */}
-      <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Organization Name */}
         <div>
-          <label className="block font-semibold">Organization Name</label>
+          <label className="block font-semibold mb-1">Organization Name</label>
           <input
             type="text"
             value={orgName}
@@ -41,15 +40,22 @@ export default function OrgForm() {
             required
           />
         </div>
+
+        {/* Address */}
         <div>
-          <label className="block font-semibold">Address</label>
-          
+          <label className="block font-semibold mb-1">Address</label>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="w-full border rounded px-3 py-2"
+          />
         </div>
 
-        {/* Vehicles Form */}
-        <div className="mt-6">
-          <h2 className="text-2xl font-semibold mb-4">Add Vehicles</h2>
-          <div className="flex gap-4 mb-4">
+        {/* Vehicles Section */}
+        <div>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4">Add Vehicles</h2>
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4">
             <input
               type="text"
               placeholder="Vehicle Type"
@@ -74,7 +80,7 @@ export default function OrgForm() {
             <button
               type="button"
               onClick={addVehicle}
-              className="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-500 transition"
+              className="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-500 transition w-full sm:w-auto"
             >
               Add Vehicle
             </button>
@@ -86,7 +92,7 @@ export default function OrgForm() {
               <h3 className="font-semibold mb-2">Vehicles Added:</h3>
               <ul className="list-disc list-inside">
                 {vehicles.map((v, i) => (
-                  <li key={i}>
+                  <li key={i} className="text-gray-700">
                     {v.vehicleType} - {v.makeModel} - {v.regNo}
                   </li>
                 ))}
@@ -97,7 +103,7 @@ export default function OrgForm() {
 
         <button
           type="submit"
-          className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition mt-6"
+          className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition w-full sm:w-auto"
         >
           Submit Organization
         </button>

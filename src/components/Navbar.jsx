@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi"; // Hamburger icons
+import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
     { name: "Home", to: "/", color: "bg-blue-500 hover:bg-blue-600" },
-    { name: "Organizations", to: "/organizations", color: "bg-green-500 hover:bg-green-600" },
-    { name: "Clients", to: "/clients", color: "bg-purple-500 hover:bg-purple-600" },
-    { name: "Maintenance", to: "/maintenance", color: "bg-red-500 hover:bg-red-600" },
+    { name: "Dashboard", to: "/dashboard", color: "bg-green-500 hover:bg-green-600" },
+    { name: "Purchases", to: "/maintenance", color: "bg-red-500 hover:bg-red-600" },
   ];
 
   return (
@@ -41,6 +39,7 @@ const Navbar = () => {
             <button
               onClick={toggleMenu}
               className="text-gray-800 focus:outline-none"
+              aria-label="Toggle menu"
             >
               {isOpen ? <HiX size={28} /> : <HiMenu size={28} />}
             </button>
@@ -49,8 +48,12 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden px-2 pt-2 pb-4 space-y-2 bg-gray-50">
+      <div
+        className={`md:hidden fixed top-16 left-0 w-full bg-gray-50 shadow-md transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <div className="flex flex-col px-4 py-4 space-y-2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -62,7 +65,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-      )}
+      </div>
     </nav>
   );
 };

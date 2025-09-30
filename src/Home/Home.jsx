@@ -15,17 +15,16 @@ export default function Home() {
 
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-md">
         <button
-          onClick={() => navigate("/organizations")}
+          onClick={() => navigate("/orgpage")}
           className="w-full sm:w-auto px-6 py-4 bg-orange-500 text-white rounded-lg shadow-lg hover:bg-orange-600 transition"
         >
-          Organizational Data
-        </button>
+          Organizational CLients        </button>
 
         <button
-          onClick={() => navigate("/clients")}
+          onClick={() => navigate("/clientpage")}
           className="w-full sm:w-auto px-6 py-4 bg-teal-400 text-white rounded-lg shadow-lg hover:bg-teal-500 transition"
         >
-          Other Clients Data
+          Walk In CLIents
         </button>
       </div>
     </div>

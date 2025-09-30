@@ -9,6 +9,9 @@ import ClientForm from "./Pages/Clients/ClientForm";
 import Maintenance from "./components/Maintenance";
 import Service from "./components/Service";
 import ClientPage from "./Pages/Clients/ClientPage"
+import Dashboard from "./components/Dashboard"; 
+import Purchases from "./components/Purchases"; 
+
 
 import "./index.css";
 
@@ -24,6 +27,10 @@ export default function App() {
         <Routes>
           {/* Landing */}
           <Route path="/" element={<Welcome />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/purchases" element={<Purchases />} />
+
+
 
           {/* Home */}
           <Route path="/home" element={<Home />} />

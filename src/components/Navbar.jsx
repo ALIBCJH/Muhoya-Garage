@@ -9,7 +9,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", to: "/", color: "bg-blue-500 hover:bg-blue-600" },
     { name: "Dashboard", to: "/dashboard", color: "bg-green-500 hover:bg-green-600" },
-    { name: "Purchases", to: "/maintenance", color: "bg-red-500 hover:bg-red-600" },
+    { name: "Purchases", to: "/purchases", color: "bg-red-500 hover:bg-red-600" },
   ];
 
   return (

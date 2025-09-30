@@ -6,9 +6,9 @@ const ClientPage = () => {
 
   // Mock list of clients (replace later with API data)
   const clients = [
-    { id: 1, name: "John Doe", email: "john@example.com" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com" },
-    { id: 3, name: "Michael Brown", email: "michael@example.com" },
+    { id: 1, name: "John Doe", email: "john@example.com", vehicle: "Toyota Prado" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com", vehicle: "Nissan X-Trail" },
+    { id: 3, name: "Michael Brown", email: "michael@example.com", vehicle: "Mazda Demio" },
   ];
 
   return (
@@ -17,7 +17,7 @@ const ClientPage = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Clients</h1>
         <button
-          onClick={() => navigate("/clients")}
+          onClick={() => navigate("/clients/new")}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
         >
           + Add New Client
@@ -32,6 +32,8 @@ const ClientPage = () => {
               <th className="p-3 border-b">ID</th>
               <th className="p-3 border-b">Name</th>
               <th className="p-3 border-b">Email</th>
+              <th className="p-3 border-b">Service Vehicle</th>
+              <th className="p-3 border-b text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +42,15 @@ const ClientPage = () => {
                 <td className="p-3 border-b">{client.id}</td>
                 <td className="p-3 border-b">{client.name}</td>
                 <td className="p-3 border-b">{client.email}</td>
+                <td className="p-3 border-b">{client.vehicle}</td>
+                <td className="p-3 border-b text-center">
+                  <button
+                    onClick={() => navigate(`/maintenance/${client.id}`)}
+                    className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                  >
+                    Start Service
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

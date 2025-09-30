@@ -20,7 +20,7 @@ const OrgPage = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Organizations</h1>
         <Link
-          to="/organizations/new"
+          to="/organizations"
           className="px-4 py-2 bg-orange-500 text-white rounded shadow hover:bg-orange-600 transition"
         >
           + Add Organization

@@ -20,12 +20,10 @@ const Purchases = () => {
     partCode: "",
   });
 
-  // handle change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setParts([
@@ -45,22 +43,24 @@ const Purchases = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Purchases - Spare Parts</h1>
+    <div className="p-4 sm:p-6">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
+        Purchases - Spare Parts
+      </h1>
 
       {/* Add new purchase form */}
       <form
         onSubmit={handleSubmit}
         className="bg-gray-100 p-4 rounded-lg shadow mb-6"
       >
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="text"
             name="partName"
             placeholder="Part Name"
             value={formData.partName}
             onChange={handleChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded w-full"
             required
           />
           <input
@@ -69,7 +69,7 @@ const Purchases = () => {
             placeholder="Buying Price"
             value={formData.buyingPrice}
             onChange={handleChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded w-full"
             required
           />
           <input
@@ -78,7 +78,7 @@ const Purchases = () => {
             placeholder="Selling Price (e.g., 2000-3000)"
             value={formData.sellingPrice}
             onChange={handleChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded w-full"
             required
           />
           <input
@@ -86,7 +86,7 @@ const Purchases = () => {
             name="purchaseDate"
             value={formData.purchaseDate}
             onChange={handleChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded w-full"
             required
           />
           <input
@@ -95,45 +95,50 @@ const Purchases = () => {
             placeholder="Part Code"
             value={formData.partCode}
             onChange={handleChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded w-full"
             required
           />
         </div>
         <button
           type="submit"
-          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="mt-4 w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
           Add Purchase
         </button>
       </form>
 
       {/* Stock table */}
-      <h2 className="text-lg font-semibold mb-2">Current Stock</h2>
+      <h2 className="text-xl font-semibold mb-2">Current Stock</h2>
       {parts.length === 0 ? (
-        <p>No stock available</p>
+        <p className="text-gray-600">No stock available</p>
       ) : (
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">Part Name</th>
-              <th className="border p-2">Buying Price</th>
-              <th className="border p-2">Selling Price</th>
-              <th className="border p-2">Date of Purchase</th>
-              <th className="border p-2">Part Code</th>
-            </tr>
-          </thead>
-          <tbody>
-            {parts.map((part) => (
-              <tr key={part.id}>
-                <td className="border p-2">{part.partName}</td>
-                <td className="border p-2">{part.buyingPrice}</td>
-                <td className="border p-2">{part.sellingPrice}</td>
-                <td className="border p-2">{part.purchaseDate}</td>
-                <td className="border p-2">{part.partCode}</td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border p-2">Part Name</th>
+                <th className="border p-2">Buying Price</th>
+                <th className="border p-2">Selling Price</th>
+                <th className="border p-2">Date of Purchase</th>
+                <th className="border p-2">Part Code</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {parts.map((part) => (
+                <tr
+                  key={part.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="border p-2">{part.partName}</td>
+                  <td className="border p-2">{part.buyingPrice}</td>
+                  <td className="border p-2">{part.sellingPrice}</td>
+                  <td className="border p-2">{part.purchaseDate}</td>
+                  <td className="border p-2">{part.partCode}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

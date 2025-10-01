@@ -8,7 +8,7 @@ const Welcome = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-orange-500 to-teal-400 text-gray-800">
       <h1 className="text-5xl font-extrabold mb-6 text-center text-white drop-shadow-lg">
-        Welcome to Muhoya Garage Management System
+        Muhoya Auto Garage 
       </h1>
       <p className="text-lg mb-8 text-center text-gray-100">
         Manage your clients, vehicles, and revenue with ease.

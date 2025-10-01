@@ -2,6 +2,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Welcome from "./components/Welcome";
+import Layout from "./components/Layout";
+
 import Home from "./Home/Home";
 import OrgForm from "./Pages/Org/OrgForm";
 import OrgPage from "./Pages/Org/OrgPage";  // ✅ make sure import points here
@@ -24,7 +26,8 @@ export default function App() {
       {location.pathname !== "/" && <Navbar />}
 
       <div className="flex-grow">
-        <Routes>
+     <Layout>
+         <Routes>
           {/* Landing */}
           <Route path="/" element={<Welcome />} />
                   <Route path="/dashboard" element={<Dashboard />} />
@@ -47,6 +50,7 @@ export default function App() {
           {/* Clients */}
           <Route path="/clients" element={<ClientForm />} />
         </Routes>
+     </Layout>
       </div>
 
       {/* Footer always visible */}
